@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   (1..3).each do |i|
     config.vm.define "c4l20#{i}" do |node|
       node.vm.hostname = "c4l20#{i}"
+      node.vm.provision "shell", path: "ubuntu_script.sh"
       node.vm.network :private_network, ip: "10.0.15.2#{i}"
     end
   end
