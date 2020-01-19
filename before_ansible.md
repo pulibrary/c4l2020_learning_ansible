@@ -21,4 +21,4 @@ We are creating a "contrived" :wink: project to drive this workshop. Your organi
  1. [Apache Solr](https://lucene.apache.org/solr/) - for search
  1. [Alerta](http://alerta.io) - for monitoring and alerts
 
- You would would need to remember not just the instructions to set this up but how to manage this up 6 months down the road and/or onboard new and current staff (including future you) on what it takes to maintain this very important application.
+ You would would need to remember not just the instructions to set this up but how to manage this up 6 months down the road and/or onboard new and current staff (including future you) on what it takes to maintain this very important application. We will go through the exercise of installing and configuring these and time permitting doing these using pre-recorded steps to avoid using StackOverflow and then compare the comfort ansible provides us. But first a [detour explaining this repository](workshop_intro.md)

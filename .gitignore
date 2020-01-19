@@ -1,3 +1,5 @@
 # vagrant directory
 Vagrantfile
 .vagrant/
+ubuntu_keys.txt
+centos_keys.txt
