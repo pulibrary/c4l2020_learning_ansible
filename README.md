@@ -6,11 +6,11 @@ Instructors: [James Griffin](https://github.com/jrgriffiniii), [Francis Kayiwa](
 
 ## Overview
 
-This will be a full day workshop to introducing you to ansible. The workshop will focus on getting attendees to use ansible. The target audience for the workshops is neophytes who are completely new automating server administration. The structure of the workshop is to remain self-driven with some guidance. This nature of this repo will be a "live" document that will be improved on by those who find bits of it missing. Pull requests are therefore most welcome.
+This will be a full day workshop to introducing you to [ansible](https://ansible.com). The workshop will focus on getting attendees to use ansible. The target audience for the workshops is neophytes who are completely new automating server administration. The structure of the workshop is to remain self-driven with some guidance. This nature of this repo will be a "live" document that will be improved on by those who find bits of it missing. Pull requests are therefore most welcome.
 
 ### Software Installation etc.,
 
-It is possible to use your UNIX-Like Operating System installation. The instructor is happy to discuss this outside of the workshop. However to allow for consistency we will be using a virtual machines to allow for consistency. It is our experience that the less hoops one has to jump through when learning the easier it is to comprehend the scope and applicability of concepts. 
+It is possible to use your UNIX-Like Operating System installation. The instructors are happy to discuss this outside of the workshop. However to allow for consistency we will be using a virtual machines to allow for consistency. It is our experience that the less hoops one has to jump through when learning the easier it is to comprehend the scope and applicability of concepts. 
 
 ### Code of Conduct
 
