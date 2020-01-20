@@ -10,7 +10,7 @@ This will be a full day workshop to introducing you to [ansible](https://ansible
 
 ### Software Installation etc.,
 
-Prior to arrival for the workshop make sure you have [Vagrant](https://vagrantup.com), [VirtualBox](https://virtualbox.org). At the time of creating the document there is a bug of the latest versions of vagrant and virtualbox working together. If you are unable to follow the [steps here](https://github.com/oracle/vagrant-boxes/issues/178) please create an issue on this repository so we can create a zoom session to help you correct this.
+Prior to arrival for the workshop make sure you have [Vagrant](https://vagrantup.com), [VirtualBox](https://virtualbox.org). At the time of creating the document there is a bug of the latest versions of vagrant and virtualbox working together. If you are unable to follow the [steps here](https://github.com/oracle/vagrant-boxes/issues/178) please create an issue on this repository so we can create a zoom session to help you correct this. We have additional [bandwidth saving](workshop_intro.md) steps. Since hotel WiFi can be unreliable it is in everyone's best interest to follow those steps prior to arrival.
 
 It is possible to use your UNIX-Like Operating System installation. The instructors are happy to discuss this outside of the workshop. However to allow for consistency we will be using a virtual machines to allow for consistency. It is our experience that the less hoops one has to jump through when learning the easier it is to comprehend the scope and applicability of concepts. 
 
