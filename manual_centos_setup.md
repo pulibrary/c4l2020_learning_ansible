@@ -26,3 +26,21 @@ tar xzf solr-8.4.1.tgz solr-8.4.1/bin/install_solr_service.sh --strip-components
 sudo bash ./install_solr_service.sh solr-8.4.1.tgz
 sudo service solr start
 ```
+
+## Install Drupal 8
+
+Install on c4l203 and c4l204
+
+Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
+
+### PHP and Webserver
+
+```bash
+sudo yum install epel-release yum-utils
+sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum-config-manager --enable remi-php72
+sudo yum install php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl git
+sudo yum install nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
