@@ -40,7 +40,21 @@ sudo yum install epel-release yum-utils
 sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi-php72
 sudo yum install php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl git
+```
+
+To add NGINX yum repository, create a file named `/etc/yum.repos.d/nginx.repo` and paste this configuration below:
+
+```yaml
+[nginx]
+name=nginx repo
+baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
+gpgcheck=0
+enabled=1
+```
+
+Then run the following:
+
+```bash
+sudo yum update
 sudo yum install nginx
-sudo systemctl enable nginx
-sudo systemctl start nginx
 ```
