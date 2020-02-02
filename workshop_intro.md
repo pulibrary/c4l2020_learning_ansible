@@ -31,6 +31,12 @@ vagrant up
 
 Depending on your PC's power and network this process will launch at least 5 Virtual machines
 
+When it completes run
+
+```bash
+vagrant halt
+```
+
 ## More on the repository
 
 We will discuss what [Vagrant](https://vagrantup.com) in brief during the workshop. We will work through installing Ansible from scratch, how it operates at the command line, what the configuration files look like, and how communication works between nodes. This use of Vagrant allows us a lab we can build and tear down without significant penalty.
