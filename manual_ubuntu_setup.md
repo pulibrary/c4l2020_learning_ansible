@@ -39,3 +39,37 @@ tar xzf solr-8.4.1.tgz solr-8.4.1/bin/install_solr_service.sh --strip-components
 sudo bash ./install_solr_service.sh solr-8.4.1.tgz
 sudo service solr start
 ```
+
+## Install Drupal 8
+
+Install on c4l203 and c4l204
+
+Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
+
+### PHP and Webserver
+
+```bash
+sudo apt-get -y update
+sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-json php7.2-xml php7.2-curl git
+```
+
+Create nginx upstream repo file at `/etc/apt/sources.list.d/nginx.list` with the following content
+
+```bash
+deb http://nginx.org/packages/ubuntu/ bionic nginx
+deb-src http://nginx.org/packages/ubuntu/ bionic nginx
+```
+
+```bash
+sudo apt-get -y update
+sudo apt-get -y install nginx
+```
+
+If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
+
+```bash
+export key=<error key above>
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
+sudo apt-get -y update
+sudo apt-get -y install nginx
+```
