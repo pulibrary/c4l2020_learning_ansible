@@ -50,7 +50,7 @@ Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
 
 ```bash
 sudo apt-get -y update
-sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-json php7.2-xml php7.2-curl git
+sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-json php7.2-xml php7.2-curl php7.2-zip php7.2-mbstring unzip git
 ```
 
 Create nginx upstream repo file at `/etc/apt/sources.list.d/nginx.list` with the following content
@@ -68,8 +68,43 @@ sudo apt-get -y install nginx
 If a W: GPG error: http://nginx.org/packages/ubuntu xenial Release: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY $key is encountered during the NGINX repository update, execute the following:
 
 ```bash
-export key=<error key above>
+export key=<error key above> # for example ABF5BD827BD9BF62 will be export key=ABF5BD827BD9BF62
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $key
 sudo apt-get -y update
 sudo apt-get -y install nginx
+```
+
+By default PHP FPM will run as user `www-data`. We’ll change the user to nginx. To do so open the `/etc/php/7.2/fpm/pool.d/www.conf` file and edit the lines below:
+
+```yaml
+...
+user = nginx
+...
+listen.owner = nginx
+listen.group = nginx
+```
+
+Enable the php-fpm service
+
+```bash
+sudo systemctl enable php7.2-fpm
+sudo systemctl start php7.2-fpm
+```
+
+### Install Composer
+
+Composer is a dependency manager for PHP. We will download the Drupal template and install all necessary Drupal components with composer.
+
+The following command will install composer globally by downloading the Composer installer with curl and moving the file to the `/usr/local/bin` directory:
+
+```bash
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+Install Drupal using:
+
+```bash
+sudo mkdir -p /var/www/html/my_drupal
+sudo chown -R vagrant:vagrant /var/www/html/my_drupal
+/usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html/my_drupal --no-interaction
 ```

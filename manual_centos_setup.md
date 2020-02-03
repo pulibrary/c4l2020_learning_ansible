@@ -39,7 +39,8 @@ Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
 sudo yum install epel-release yum-utils
 sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi-php72
-sudo yum install php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl git
+sudo yum update
+sudo yum install php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl php-zip git unzip
 ```
 
 To add NGINX yum repository, create a file named `/etc/yum.repos.d/nginx.repo` and paste this configuration below:
@@ -57,4 +58,55 @@ Then run the following:
 ```bash
 sudo yum update
 sudo yum install nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
+```
+
+By default PHP FPM will run as user apache on port 9000. We’ll change the user to nginx and switch from TCP socket to Unix socket. To do so open the `/etc/php-fpm.d/www.conf` file and edit the lines below:
+
+```yaml
+...
+user = nginx
+...
+listen = /run/php-fpm/www.sock
+...
+listen.owner = nginx
+listen.group = nginx
+```
+
+Make sure the `/var/lib/php` directory has the following ownership:
+
+```bash
+sudo chown -R root:nginx /var/lib/php
+```
+
+Enable the php-fpm service
+
+```bash
+sudo systemctl enable php-fpm
+sudo systemctl start php-fpm
+```
+
+### Install Composer
+
+Composer is a dependency manager for PHP. We will download the Drupal template and install all necessary Drupal components with composer.
+
+The following command will install composer globally by downloading the Composer installer with curl and moving the file to the `/usr/local/bin` directory:
+
+```bash
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+Edit `/etc/php/php.ini`
+
+```ini
+memory_limit = 2G
+```
+
+Install Drupal using:
+
+```bash
+sudo mkdir -p /var/www/html/my_drupal
+sudo chown -R vagrant:vagrant /var/www/html/my_drupal
+/usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/my_drupal --no-interaction
 ```
