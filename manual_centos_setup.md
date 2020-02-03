@@ -36,11 +36,11 @@ Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
 ### PHP and Webserver
 
 ```bash
-sudo yum install epel-release yum-utils
-sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+sudo yum install -y epel-release yum-utils
+sudo yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi-php72
 sudo yum update
-sudo yum install php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl php-zip git unzip
+sudo yum install -y php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl php-zip git unzip
 ```
 
 To add NGINX yum repository, create a file named `/etc/yum.repos.d/nginx.repo` and paste this configuration below:
@@ -57,7 +57,7 @@ Then run the following:
 
 ```bash
 sudo yum update
-sudo yum install nginx
+sudo yum install -y nginx
 sudo systemctl enable nginx
 sudo systemctl start nginx
 ```
@@ -110,3 +110,14 @@ sudo mkdir -p /var/www/html/my_drupal
 sudo chown -R vagrant:vagrant /var/www/html/my_drupal
 /usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/my_drupal --no-interaction
 ```
+
+## Install HaProxy
+
+Install on c4l205 (or c4l204)
+
+```bash
+yum install epel-release -y
+yum install haproxy -y
+```
+
+The following steps install the basic software and depending on time in the class we will [configure the software](manual_centos_configure.md) to work together. The whole point of the workshop is to automate the aforementioned steps and be sure you will get the same results every time. If you are ahead of the rest of the class do go ahead and configure the software

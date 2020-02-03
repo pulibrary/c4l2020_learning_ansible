@@ -76,7 +76,7 @@ sudo apt-get -y install nginx
 
 By default PHP FPM will run as user `www-data`. We’ll change the user to nginx. To do so open the `/etc/php/7.2/fpm/pool.d/www.conf` file and edit the lines below:
 
-```yaml
+```ini
 ...
 user = nginx
 ...
@@ -108,3 +108,15 @@ sudo mkdir -p /var/www/html/my_drupal
 sudo chown -R vagrant:vagrant /var/www/html/my_drupal
 /usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html/my_drupal --no-interaction
 ```
+
+## Install HaProxy
+
+Install on c4l205 (or c4l204)
+
+```bash
+sudo add-apt-repositoryppa:vbernat/haproxy-1.8
+sudo apt-get -y update
+sudo apt-get -y install haproxy
+```
+
+The following steps install the basic software and depending on time in the class we will [configure the software](manual_ubuntu_configure.md) to work together. The whole point of the workshop is to automate the aforementioned steps and be sure you will get the same results every time. If you are ahead of the rest of the class do go ahead and configure the software
