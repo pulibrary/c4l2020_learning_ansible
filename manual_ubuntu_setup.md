@@ -119,4 +119,26 @@ sudo apt-get -y update
 sudo apt-get -y install haproxy
 ```
 
+## Install Netdata
+
+Install on all VMs
+
+```bash
+curl -L https://packagecloud.io/netdata/netdata/gpgkey | sudo apt-key add -
+```
+
+Create a file named `/etc/apt/sources.list.d/netdata_netdata.list` that contains the repository configuration below:
+
+```yaml
+deb https://packagecloud.io/netdata/netdata/ubuntu/ bionic main
+deb-src https://packagecloud.io/netdata/netdata/ubuntu/ bionic main
+```
+
+Run the following to install netdata:
+
+```bash
+sudo apt-get -y update 
+sudo apt-get -y install netdata
+```
+
 The following steps install the basic software and depending on time in the class we will [configure the software](manual_ubuntu_configure.md) to work together. The whole point of the workshop is to automate the aforementioned steps and be sure you will get the same results every time. If you are ahead of the rest of the class do go ahead and configure the software

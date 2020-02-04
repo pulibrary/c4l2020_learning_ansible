@@ -120,4 +120,46 @@ yum install epel-release -y
 yum install haproxy -y
 ```
 
+## Install Netdata
+
+Install on all VMs
+
+```bash
+sudo yum -y install epel-release pygpgme yum-utils
+```
+
+Create a file named `/etc/yum.repos.d/netdata_netdata.repo` that contains the repository configuration below:
+
+```ini
+[netdata_netdata]
+name=netdata_netdata
+baseurl=https://packagecloud.io/netdata/netdata/el/7/$basearch
+repo_gpgcheck=1
+gpgcheck=0
+enabled=1
+gpgkey=https://packagecloud.io/netdata/netdata/gpgkey
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+
+[netdata_netdata-source]
+name=netdata_netdata-source
+baseurl=https://packagecloud.io/netdata/netdata/el/7/SRPMS
+repo_gpgcheck=1
+gpgcheck=0
+enabled=1
+gpgkey=https://packagecloud.io/netdata/netdata/gpgkey
+sslverify=1
+sslcacert=/etc/pki/tls/certs/ca-bundle.crt
+metadata_expire=300
+```
+
+Update the local yum cache and install netdata by running:
+
+```bash
+sudo yum -q makecache -y --disablerepo='*' --enablerepo='netdata_netdata'
+sudo yum -y install netdata
+```
+
+
 The following steps install the basic software and depending on time in the class we will [configure the software](manual_centos_configure.md) to work together. The whole point of the workshop is to automate the aforementioned steps and be sure you will get the same results every time. If you are ahead of the rest of the class do go ahead and configure the software
