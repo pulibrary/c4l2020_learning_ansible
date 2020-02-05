@@ -2,16 +2,16 @@
 
 ## Prior to class
 
-With [Vagrant](https://vagrantup.com) and [Virtualbox](https://virtualbox.org) installed let's discuss the content of this repo. There is a directory called `c4l2020_learning_ansible/vagrantfiles/` which contain two files named `bionicVagrantfile` and `centosVagrantfile`. Take a look at the content of the files and modify lines 15 to say less than 5 if you have less than 8GB of memory. So 
+With [Vagrant](https://vagrantup.com) and [Virtualbox](https://virtualbox.org) installed let's discuss the content of this repo. There is a directory called `c4l2020_learning_ansible/vagrantfiles/` which contain two files named `bionicVagrantfile` and `centosVagrantfile`. Take a look at the content of the files and modify lines 7 to have a box count of 3 if you have less than 8GB of memory. So 
 
 ```bash
-(1..5).each do |i|
+NODE_COUNT = 4
 ```
 
 will say 
 
 ```bash
-(1..4).each do |i|
+NODE_COUNT = 3
 ```
 Then
 
