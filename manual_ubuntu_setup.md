@@ -1,6 +1,6 @@
 ## Install PostgreSQL 12 
 
-Install on c4l202
+Install on c4l20node1
 
 Reference: [PostgreSQL Project](https://wiki.postgresql.org/wiki/Apt)
 
@@ -27,7 +27,7 @@ sudo systemctl start postgresql
 
 ## Install Solr 8.4.1
 
-Install on c4l202
+Install on c4l20node1
 
 Reference: [Apache Solr](https://lucene.apache.org/solr/guide/8_4/installing-solr.html)
 
@@ -42,7 +42,7 @@ sudo service solr start
 
 ## Install Drupal 8
 
-Install on c4l203 and c4l204
+Install on c4l20node2 and c4l20node3
 
 Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
 
@@ -111,7 +111,7 @@ sudo chown -R vagrant:vagrant /var/www/html/my_drupal
 
 ## Install HaProxy
 
-Install on c4l205 (or c4l204)
+Install on c4l20node4 (or c4l20node3)
 
 ```bash
 sudo add-apt-repositoryppa:vbernat/haproxy-1.8

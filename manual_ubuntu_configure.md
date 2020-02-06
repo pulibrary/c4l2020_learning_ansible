@@ -1,4 +1,4 @@
-## postgresql 
+## postgresql (on c4lnode1)
 
 Edit `/etc/postgresql/12/main/postgresql.conf` (about line 59)
 
