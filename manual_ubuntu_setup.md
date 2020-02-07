@@ -50,7 +50,7 @@ Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
 
 ```bash
 sudo apt-get -y update
-sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-json php7.2-xml php7.2-curl php7.2-zip php7.2-mbstring unzip git
+sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-json php7.2-xml php7.2-curl php7.2-zip php7.2-mbstring unzip git zip
 ```
 
 Create nginx upstream repo file at `/etc/apt/sources.list.d/nginx.list` with the following content

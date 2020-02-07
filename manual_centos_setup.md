@@ -40,12 +40,12 @@ sudo yum install -y epel-release yum-utils
 sudo yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 sudo yum-config-manager --enable remi-php72
 sudo yum update
-sudo yum install -y php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl php-zip git unzip
+sudo yum install -y php-cli php-fpm php-pgsql php-json php-opcache php-mbstring php-xml php-gd php-curl php-zip git unzip zip
 ```
 
 To add NGINX yum repository, create a file named `/etc/yum.repos.d/nginx.repo` and paste this configuration below:
 
-```yaml
+```ini
 [nginx]
 name=nginx repo
 baseurl=http://nginx.org/packages/centos/$releasever/$basearch/
@@ -64,7 +64,7 @@ sudo systemctl start nginx
 
 By default PHP FPM will run as user apache on port 9000. We’ll change the user to nginx and switch from TCP socket to Unix socket. To do so open the `/etc/php-fpm.d/www.conf` file and edit the lines below:
 
-```yaml
+```ini
 ...
 user = nginx
 ...
@@ -97,7 +97,7 @@ The following command will install composer globally by downloading the Composer
 curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 ```
 
-Edit `/etc/php/php.ini`
+Edit `/etc/php.ini`
 
 ```ini
 memory_limit = 2G
@@ -108,7 +108,7 @@ Install Drupal using:
 ```bash
 sudo mkdir -p /var/www/html/my_drupal
 sudo chown -R vagrant:vagrant /var/www/html/my_drupal
-/usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/my_drupal --no-interaction
+/usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html/my_drupal --no-interaction
 ```
 
 ## Install HaProxy
