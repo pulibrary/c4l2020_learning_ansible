@@ -16,15 +16,31 @@ host    all        all        10.0.15.12/32        md5
 host    all        all        10.0.15.13/32        md5
 ```
 
+Create db user and db
+
+```bash
+createuser -P -d -e c4l20_drupal_user
+createdb -O c4l20_drupal_user c4l20_drupal_db
+```
+
+## solr (on c4l20node1)
+
+```bash
+sudo yum install lsof
+```
+
 ## nginx (on c4l20node2 and c4lnode3)
 
-Our Drupal Site will be served from `/var/www/html/my_drupal`. Replace `/usr/share/nginx/html` with that on the file `/etc/nginx/conf.d/default.conf`
+uncomment the following on  PHP location block
 
 ```
 server {
-    listen         80 default_server;
-    listen         [::]:80 default_server;
-    root           /usr/share/nginx/html;
-    index          index.html;
-}
+...
+  location ~* \.php$ {
+    root  /usr/share/nginx/html;
+    fastcgi_pass unix:/run/php-fpm/www.sock;
+    include         fastcgi_params;
+    fastcgi_param   SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    fastcgi_param   SCRIPT_NAME        $fastcgi_script_name;
+...
 ```

@@ -87,28 +87,13 @@ sudo systemctl enable php-fpm
 sudo systemctl start php-fpm
 ```
 
-### Install Composer
-
-Composer is a dependency manager for PHP. We will download the Drupal template and install all necessary Drupal components with composer.
-
-The following command will install composer globally by downloading the Composer installer with curl and moving the file to the `/usr/local/bin` directory:
+### Download and install Drupal
 
 ```bash
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-```
-
-Edit `/etc/php.ini`
-
-```ini
-memory_limit = 2G
-```
-
-Install Drupal using:
-
-```bash
-sudo mkdir -p /var/www/html/my_drupal
-sudo chown -R vagrant:vagrant /var/www/html/my_drupal
-/usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html/my_drupal --no-interaction
+cd /tmp
+wget https://ftp.drupal.org/files/projects/drupal-8.8.2.tar.gz
+tar xzvf drupal-8.8.2.tar.gz
+sudo mv drupal-8.8.2/* /usr/share/nginx/html/
 ```
 
 ## Install HaProxy

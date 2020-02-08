@@ -40,7 +40,7 @@ sudo bash ./install_solr_service.sh solr-8.4.1.tgz
 sudo service solr start
 ```
 
-## Install Drupal 8
+## Install Drupal
 
 Install on c4l20node2 and c4l20node3
 
@@ -50,7 +50,7 @@ Reference: [Drupal Install Documentation](https://www.drupal.org/docs/8/install)
 
 ```bash
 sudo apt-get -y update
-sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-json php7.2-xml php7.2-curl php7.2-zip php7.2-mbstring unzip git zip
+sudo apt-get -y install php7.2-cli php7.2-fpm php7.2-gd php7.2-opcache php7.2-pgsql php7.2-json php7.2-xml php7.2-curl php7.2-zip php7.2-mbstring unzip git zip
 ```
 
 Create nginx upstream repo file at `/etc/apt/sources.list.d/nginx.list` with the following content
@@ -91,22 +91,13 @@ sudo systemctl enable php7.2-fpm
 sudo systemctl start php7.2-fpm
 ```
 
-### Install Composer
-
-Composer is a dependency manager for PHP. We will download the Drupal template and install all necessary Drupal components with composer.
-
-The following command will install composer globally by downloading the Composer installer with curl and moving the file to the `/usr/local/bin` directory:
+### Download and install Drupal
 
 ```bash
-curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
-```
-
-Install Drupal using:
-
-```bash
-sudo mkdir -p /var/www/html/my_drupal
-sudo chown -R vagrant:vagrant /var/www/html/my_drupal
-/usr/local/bin/composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html/my_drupal --no-interaction
+cd /tmp
+wget https://ftp.drupal.org/files/projects/drupal-8.8.2.tar.gz
+tar xzvf drupal-8.8.2.tar.gz
+sudo mv drupal-8.8.2/* /usr/share/nginx/html/
 ```
 
 ## Install HaProxy
