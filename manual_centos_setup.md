@@ -101,8 +101,8 @@ sudo mv drupal-8.8.2/* /usr/share/nginx/html/
 Install on c4l20node4 (or c4l20node3)
 
 ```bash
-yum install epel-release -y
-yum install haproxy -y
+sudo yum install epel-release -y
+sudo yum install haproxy -y
 ```
 
 ## Install Netdata
