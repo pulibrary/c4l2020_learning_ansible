@@ -29,7 +29,7 @@ ln sf ./vagrantfiles/centosVagrantfile ./Vagrantfile
 vagrant up
 ```
 
-Depending on your PC's power and network this process will launch at least 5 Virtual machines
+Depending on your PC's power and network this process will launch at least 4 Virtual machines and about 15 minutes on my slow network connection at home.
 
 When it completes run
 
