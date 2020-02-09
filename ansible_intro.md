@@ -74,14 +74,60 @@ ansible all -m ping
 
 The latter has guaranteed idempotency in a way that the former does not. 
 
-Finally let's install the rsync software with 
+Finally let's install the nginx webserver software again by passing ansible's verbose:
 
 ```bash
-ansible all -i "10.0.15.12" -m package  -a "name=rsync state=present" -b
+ansible -vvv all -i "10.0.15.12" -m package  -a "name=nginx state=present" -b
+ansible -vvv all -i "10.0.15.12" -m package  -a "name=nginx state=absent" -b
 ```
 
-this will use the ansible module `package` to install the rsync, the `-b` flag elevates our privilege. Install rsync on the rest of the VMs before we move on to configuring and reducing the number of ansible flags to remember.
+this will use the ansible module `package` to uninstall and install the nginx webserver software, the `-b` flag elevates our privilege. Feel free to uninstall and install the software that the manual steps we did earlier did before we move on to configuring ansible and reducing the number of ansible flags to remember.
+
+The first step is run and ansible does nothing because nginx is already installed, the second one removes it.
 
 ### Configure Ansible
 
+Thus far we have called individual VMs by their respective IP addresses. The examples presented thus far are useful but become impractical fairly quickly. Generally ansible is used against multiple hosts on your infrastructure at the same time. These are defined in an `INI` (YAML is okay also) format file. The default location is usually `/etc/ansible/hosts` which you can examine for pattern examples. The documentation on [inventory patterns](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#intro-inventory) is discussed on Ansible's brilliant documentation. The warnings we saw earlier when you ran the ping command are because by default ansible will look at the default `/etc/ansible/ansible.cfg`. We will modify this by using the file under `ansible/ansible.cfg` this will include the hosts we will be connecting to for the rest of the workshop.
 
+If you run the following steps you will see ansible use the `/etc/ansible/ansible.cfg` first:
+
+```bash
+vagrant ssh master
+ansible all -m ping
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+```
+
+If you cd into `/vagrant/ansible` you get a different result because ansible picks the inventory defined in `ansible.cfg`
+
+```bash
+cd /vagrant/ansible
+ansible all -m ping
+10.0.15.14 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+10.0.15.11 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+10.0.15.13 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+10.0.15.12 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
