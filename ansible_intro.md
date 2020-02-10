@@ -138,18 +138,32 @@ From this directory let's run a few more commands from the [Ansible documentatio
 ansible all -m shell -a 'date'
 ansible all -m shell -a 'uptime'
 ```
-
 Those are the using the shell module to run the `date` and `uptime` commands on all the VMs
 
 ```bash
 ansible all -m package -a "name=rsync state=present" -b
 ```
-
 installs rsync on all servers
 
 ```bash
 ansible all -m package -a "name=rsync state=absent" -b
 ```
-
 uninstalls rsync on all servers
 
+```bash
+ansible c4l20nodes -m user -a "name=conan password=s3kr1t-455 comment="Conan theDeployer" -b
+```
+adds the user `conan` on all the c4l20nodes group
+
+```bash
+ansible c4l20nodes -m user -a "name=conan state=absent" -b
+```
+removes the user
+```bash
+ansible webserver -m service -a "name=nginx state=restarted" -b
+```
+restarted the nginx webserver on the webserver group
+```bash
+ansible all -m setup
+```
+presents all the information about all the VMs
