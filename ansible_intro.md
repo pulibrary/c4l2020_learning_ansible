@@ -83,7 +83,7 @@ ansible -vvv all -i "10.0.15.12" -m package  -a "name=nginx state=absent" -b
 
 this will use the ansible module `package` to uninstall and install the nginx webserver software, the `-b` flag elevates our privilege. Feel free to uninstall and install the software that the manual steps we did earlier did before we move on to configuring ansible and reducing the number of ansible flags to remember.
 
-The first step is run and ansible does nothing because nginx is already installed, the second one removes it.
+The first step is run and ansible does nothing because nginx is already installed, the second one removes it. The first step is a key property of idempotence where ansible only does what needs to be done. So nginx was already installed so ansible did nothing.
 
 ### Configure Ansible
 
@@ -131,3 +131,25 @@ ansible all -m ping
     "ping": "pong"
 }
 ```
+
+From this directory let's run a few more commands from the [Ansible documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html) on all the VMs
+
+```bash
+ansible all -m shell -a 'date'
+ansible all -m shell -a 'uptime'
+```
+
+Those are the using the shell module to run the `date` and `uptime` commands on all the VMs
+
+```bash
+ansible all -m package -a "name=rsync state=present" -b
+```
+
+installs rsync on all servers
+
+```bash
+ansible all -m package -a "name=rsync state=absent" -b
+```
+
+uninstalls rsync on all servers
+
