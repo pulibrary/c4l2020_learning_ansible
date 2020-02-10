@@ -167,3 +167,8 @@ restarted the nginx webserver on the webserver group
 ansible all -m setup
 ```
 presents all the information about all the VMs
+
+## Exercise
+
+* use ansible's [copy module](https://docs.ansible.com/ansible/latest/modules/copy_module.html) to copy the `{centos,ubuntu}-keys.txt` to all the VMs.
+* use ansible's [service module](https://docs.ansible.com/ansible/latest/modules/service_module.html) to restart the postgresql server
