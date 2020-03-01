@@ -1,17 +1,17 @@
 ## Ansible Introduction
 
-Before installing ansible we will need to configure the master VM to connect to `c4l20node{1,2,3,4}`. For the purposes of this workshop Ansible uses ssh to connect to the other virtual machines. When you ran `vagrant up` it generated `{centos,ubuntu}_keys.txt` files at the root of the directory. We will be copying the contents of root@master generated keys into all the virtual machines. (Details on how these keys were generated are in the shell script inside the vagrantfiles). If you have run vagrant up a number of times then it is the `root@master` towards the bottom of the file. Repeat these steps on all the VMs.
+Before installing ansible we will need to configure the controller VM to connect to `c4l20node{1,2,3,4}`. For the purposes of this workshop Ansible uses ssh to connect to the other virtual machines. When you ran `vagrant up` it generated `{centos,ubuntu}_keys.txt` files at the root of the directory. We will be copying the contents of root@controller generated keys into all the virtual machines. (Details on how these keys were generated are in the shell script inside the vagrantfiles). If you have run vagrant up a number of times then it is the `root@controller` towards the bottom of the file. Repeat these steps on all the VMs.
 
 ```bash
 vagrant ssh c4l20node4
 vagrant@c4l20node4:~$ cat /vagrant/ubuntu_keys.txt
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhXqe2Ja0ato4eG+kCUSuGUTKm57SakdQGO7k0lJHJYgUU0QUB/IByhvA2teiJj2+F3WgiU3Pl9U/QCvTMswRGTcvjEFvGPOGJZfVCiQ+L8zQa9QM1f11tSAXM3mqIIPFUVNHqp42F8w04Q10rVw21eCVXoNSGQzbUIPRyMmHEq6ZDOUwGeH7l0aXzr70tu85XcL5jnoh7adb1y3GAMT7SkESsg05lzs7EpzYMBR+/vwT8YOiqOUScnOhiMJwX1ae2Ztw7rDPh2aoDmXHtF5B5hPmzMN8rlv6yCbDEEvIWhJtD4/B0j+GPpQKWyXrryQHuFu++3634Ck1B1c3eEDaX root@master
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDhXqe2Ja0ato4eG+kCUSuGUTKm57SakdQGO7k0lJHJYgUU0QUB/IByhvA2teiJj2+F3WgiU3Pl9U/QCvTMswRGTcvjEFvGPOGJZfVCiQ+L8zQa9QM1f11tSAXM3mqIIPFUVNHqp42F8w04Q10rVw21eCVXoNSGQzbUIPRyMmHEq6ZDOUwGeH7l0aXzr70tu85XcL5jnoh7adb1y3GAMT7SkESsg05lzs7EpzYMBR+/vwT8YOiqOUScnOhiMJwX1ae2Ztw7rDPh2aoDmXHtF5B5hPmzMN8rlv6yCbDEEvIWhJtD4/B0j+GPpQKWyXrryQHuFu++3634Ck1B1c3eEDaX root@controller
 ```
 
-Log into the master VM with and let's install Ansible and confirm installation with the following commands:
+Log into the controller VM with and let's install Ansible and confirm installation with the following commands:
 
 ```bash
-vagrant ssh master
+vagrant ssh controller
 ```
 
 On Ubuntu
@@ -39,7 +39,7 @@ ssh 10.0.15.14
 
 ### Hello Ansible
 
-The simplest command for ansible is a *local command.* Typically on your master node or local computer. Here is the verbose full command
+The simplest command for ansible is a *local command.* Typically on your controller node or local computer. Here is the verbose full command
 
 ```bash
 ansible all --inventory "localhost," --module-name debug --args "msg='Hello World'"
@@ -92,7 +92,7 @@ Thus far we have called individual VMs by their respective IP addresses. The exa
 If you run the following steps you will see ansible use the `/etc/ansible/ansible.cfg` first:
 
 ```bash
-vagrant ssh master
+vagrant ssh controller
 ansible all -m ping
 [WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
 ```
