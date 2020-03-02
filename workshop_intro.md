@@ -18,7 +18,7 @@ Then
 1. Do the following from the root of this repository if you are more familiar with Debian/Ubuntu:
 
 ```bash
-ln sf ./vagrantfiles/ubuntuVagrantfile ./Vagrantfile
+ln sf ./vagrantfiles/bionicVagrantfile ./Vagrantfile
 vagrant up
 ```
 
