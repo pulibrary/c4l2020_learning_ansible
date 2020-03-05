@@ -18,14 +18,14 @@ Then
 1. Do the following from the root of this repository if you are more familiar with Debian/Ubuntu:
 
 ```bash
-ln sf ./vagrantfiles/bionicVagrantfile ./Vagrantfile
+ln -sf ./vagrantfiles/bionicVagrantfile ./Vagrantfile
 vagrant up
 ```
 
 1. Do the following from the root of this repository if you are more familiar with RedHat/Centos:
 
 ```bash
-ln sf ./vagrantfiles/centosVagrantfile ./Vagrantfile
+ln -sf ./vagrantfiles/centosVagrantfile ./Vagrantfile
 vagrant up
 ```
 
