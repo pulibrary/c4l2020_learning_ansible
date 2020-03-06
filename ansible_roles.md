@@ -71,3 +71,7 @@
 * *Note:* `--force-handlers` will force the handlers to ran even if the task fails. (which you probably want)
 
 
+### Workshop Exercise
+
+* Complete the workshop by creating 4 roles to install drupal
+
