@@ -6,7 +6,7 @@ Playbooks are a different way to use ansible from the ad-hoc examples we've look
 
 * Hosts
 * Tasks
-* Handlers (not always)
+* Handlers (not always and better described with roles)
 
 For our purposes the [hosts](ansible/inventory) are the machines we plan to manage. 
 

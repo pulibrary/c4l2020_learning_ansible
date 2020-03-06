@@ -63,9 +63,11 @@
 * Extra Credit (add zypper, dnf, pacman, apk)
 * Extra Extra Credit create a role that installs HAProxy
 
+### Roles | Handlers
 
+* Special kinds of tasks that are triggered by other tasks using `notify` key and called by `name`
+* generally used to restart services
+* only triggered if the triggering tasks causes a change
+* *Note:* `--force-handlers` will force the handlers to ran even if the task fails. (which you probably want)
 
-For very atomic things 
-
-Handlers are used for implementing functionality that needs to be triggered
 
