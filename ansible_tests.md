@@ -72,4 +72,65 @@ tree
 
 ```
 
-* switching into the c4lexample we see the contents of a new ansible role
+* switching into the c4lexample we see the content of the new role with the contents of an ansible role
+
+* Inside the molecule directory in the role you will find a sub-directory default which represents the default actions we will be performing for this role
+
+* We have the `molecule.yml` file which has the following:
+
+```bash
+(c4l2020_learning_ansible) c4l2020_learning_ansible master % cat c4lexample/molecule/default/molecule.yml
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: docker.io/pycontribs/centos:7
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
+
+```
+* By default this will use a centos:7 docker image, it will depend on [ansible-galaxy](https://galaxy.ansible.com/) based roles and verified via ansible
+
+Let's modify that to look like this
+
+```yaml
+---
+scenario:
+  name: default
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: "pulibrary/puldocker-${MOLECULE_DISTRO:-ubuntu1804}-ansible:latest"
+    privileged: true
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    converge: playbook.yml
+  log: true
+dependency:
+  name: galaxy
+  enabled: false
+lint:
+  name: yamllint
+  options:
+    config-file: molecule/default/yaml-lint.yml
+verifier:
+  name: testinfra
+  env:
+    PYTHONWARNINGS: "ignore:.*U.*mode is deprecated:DeprecationWarning"
+  lint:
+    name: flake8
+  options:
+    # show which tests where executed in test output
+    v: 1
+```
+
+* We've now disabled galaxy, we are using a [Princeton University Library](https://github.com/pulibrary/ubuntubionicimage), we are using [testinfra](https://testinfra.readthedocs.io/en/latest/) which aims to be [ServerSpec](https://serverspec.org/) for Python 
