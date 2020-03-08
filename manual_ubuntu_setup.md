@@ -74,11 +74,12 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 ```
 
-By default PHP FPM will run as user `www-data`. We’ll change the user to nginx. To do so open the `/etc/php/7.2/fpm/pool.d/www.conf` file and edit the lines below:
+By default PHP FPM will run as user `www-data`. We’ll change the user to `nginx`. To do so open the `/etc/php/7.2/fpm/pool.d/www.conf` file and edit the lines below:
 
 ```ini
 ...
 user = nginx
+group = nginx
 ...
 listen.owner = nginx
 listen.group = nginx
