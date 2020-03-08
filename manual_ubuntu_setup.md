@@ -105,7 +105,7 @@ sudo mv drupal-8.8.2/* /usr/share/nginx/html/
 Install on c4l20node4 (or c4l20node3)
 
 ```bash
-sudo add-apt-repositoryppa:vbernat/haproxy-1.8
+sudo add-apt-repository ppa:vbernat/haproxy-1.8
 sudo apt-get -y update
 sudo apt-get -y install haproxy
 ```
