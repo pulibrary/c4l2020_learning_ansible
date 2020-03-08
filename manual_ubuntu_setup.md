@@ -48,6 +48,10 @@ sudo bash ./install_solr_service.sh solr-8.4.1.tgz
 sudo service solr start
 ```
 
+### Troubleshooting
+
+Should one encounter `Hash mismatch` errors when attempting to invoke `apt-get install -y openjdk-11-jdk`, please refer to [the `apt` troubleshooting guide](APT_TROUBLESHOOTING_UBUNTU.md).
+
 ## Install Drupal
 
 Install on c4l20node2 and c4l20node3
