@@ -1,3 +1,11 @@
+## Login to vagrant sandbox instances
+
+```bash
+vagrant status
+vagrant ssh root@<machine_name>
+```
+
+
 ## Install PostgreSQL 12 
 
 Install on c4l20node1
