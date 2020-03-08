@@ -14,6 +14,23 @@ Prior to arrival for the workshop make sure you have [Vagrant](https://vagrantup
 
 It is possible to use your UNIX-Like Operating System installation. The instructors are happy to discuss this outside of the workshop. However to allow for consistency we will be using a virtual machines to allow for consistency. It is our experience that the less hoops one has to jump through when learning the easier it is to comprehend the scope and applicability of concepts. 
 
+#### Installing Vagrant on Ubuntu/Debian Environments
+
+One may find that installing Vagrant using `apt install vagrant` may install a Vagrant release older than 2.2.6. If you are in this situation, please use the following to install a more recent release of Vagrant:
+
+```bash
+sudo apt -y remove vagrant
+# This is the latest stable release as of 03/08/20
+curl -O https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
+sudo apt install ./vagrant_2.2.6_x86_64.deb
+```
+
+Then please verify the version of Vagrant with:
+
+```
+vagrant --version
+```
+
 ### Code of Conduct
 
 Attendees at this workshop are expected to abide by the [Code4lib Code of Conduct](https://2020.code4lib.org/conduct/).
